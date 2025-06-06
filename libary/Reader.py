@@ -15,3 +15,8 @@ class Reader:
         if n <= 0:
             return None
         self.currPos -= n
+    
+    def eof(self) -> bool:
+        if self.currPos == self.length:
+            return True
+        return False

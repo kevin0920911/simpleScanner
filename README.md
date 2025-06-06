@@ -26,3 +26,13 @@
 - `Token`: 建立 Token 的類別
     - `self.type`: Token 的類型
     - `self.text`: 該 Token 的字串
+
+## Token Types
+- Separators and Brackets： `;` | `(` | `)` | `[` | `]` | `{` | `}`
+- Binary Operators：`+` | `-` | `*` | `/` | `<=` | `>=` | `<>` | `<` | `>` | `=` | `==`
+- Comments: `/\*[\s\S]*\*/`
+- Layout: ` ` | `\t` | `\r` | `\n`
+- Keyword: `int` | `float` | `bool` | `void` | `while` | `if` | `else` | `for` | `return`
+- ID: `[a-zA-Z][a-zA-Z0-9]*(_[a-zA-Z0-9]+)*`
+- integer: `[0-9]+`
+- float: `[0-9]*.[0-9]+(E(+ |- |ε)[0-9]+|ε)`

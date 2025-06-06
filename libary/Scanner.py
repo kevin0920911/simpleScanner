@@ -1,6 +1,11 @@
 import Reader
 import Token
 import enum
+import string
+
+DIGITAL = string.digits
+LETTER  = string.ascii_letters
+
 
 class ScannerState(enum.Enum):
     START = enum.auto()
@@ -11,10 +16,10 @@ class Scanner():
         self.currentState = ScannerState.START
         self.tokens = []
     
-    def nextToken(self) -> Token.TokenType:
+    def nextState(self) -> None:
         #TODO: nextToken
         pass
 
-    def generateToken(self) -> None:
+    def makeToken(self, type:Token.TokenType) -> None:
         #TODO: generate token
         pass 
