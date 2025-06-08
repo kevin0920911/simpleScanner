@@ -12,5 +12,6 @@ scanner = Scanner.Scanner(test)
 while not scanner.reader.eof():
     scanner.nextState()
 
+f = open('../token.l', mode = 'w')
 for token in scanner.tokens:
-    print(token)
+    f.write(str(token)+'\n')
