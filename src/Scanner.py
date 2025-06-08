@@ -31,6 +31,7 @@ class ScannerState(enum.Enum):
     #Comment PART
     inside_comment = enum.auto()
     COMMENT = enum.auto()
+    DOUBLE_SLASH = enum.auto()
     
 class Scanner():
     def __init__(self, text:str) -> None:
@@ -70,6 +71,8 @@ class Scanner():
                 self.__identity_with_underline()
             case ScannerState.IDENTITY_UNDERLINE:
                 self.__identity_underline()
+            case ScannerState.DOUBLE_SLASH:
+                self.__double_slash()
     def makeToken(self, type:Token.TokenType) -> None:
         newToken = Token.Token(type, self.buffer)
         self.buffer = ''
@@ -195,6 +198,9 @@ class Scanner():
         if c in '*':
             self.currentState = ScannerState.inside_comment
             self.buffer += c
+        elif c in '/':
+            self.currentState = ScannerState.DOUBLE_SLASH
+            self.buffer += c
         else:
             self.reader.retracted(1)
             self.makeToken(Token.TokenType.BINARY)
@@ -254,6 +260,14 @@ class Scanner():
             self.reader.retracted(1)
             self.makeToken(Token.TokenType.IDENTITY)
             self.currentState = ScannerState.START
+    def __double_slash(self):
+        c = self.reader.nextChar()
 
+        if c in '\n':
+            self.currentState = ScannerState.START
+            self.makeToken(Token.TokenType.COMMENTS)
+        else:
+            self.currentState = ScannerState.DOUBLE_SLASH
+            self.buffer += c
 
 
