@@ -4,9 +4,9 @@ class Reader:
         self.length = len(self.data)
         self.currPos = 0
     
-    def nextChar(self) -> str|None:
+    def nextChar(self) -> str:
         if self.currPos >= self.length:
-            return None
+            return '$'
         res = self.data[self.currPos]
         self.currPos += 1
         return res
