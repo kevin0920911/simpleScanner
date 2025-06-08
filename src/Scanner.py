@@ -118,7 +118,7 @@ class Scanner():
             self.currentState = ScannerState.DECIMAL_POINT
             self.buffer += c
         else:
-            raise Exception(f'token error unkone <{self.buffer}>')
+            raise Exception(f'token error unkone <{self.buffer+c}>')
     def __decimal_point(self):
         c = self.reader.nextChar()
 
@@ -155,7 +155,7 @@ class Scanner():
             self.currentState = ScannerState.EXPONENTIAL
             self.buffer += c
         else:
-           raise Exception(f'token error unkone <{self.buffer}>')
+           raise Exception(f'token error unkone <{self.buffer+c}>')
     def __exponential_with_sign(self):
         c = self.reader.nextChar()
 
@@ -163,7 +163,7 @@ class Scanner():
             self.currentState = ScannerState.EXPONENTIAL
             self.buffer += c
         else:
-            raise Exception(f'token error unkone <{self.buffer}>')  
+            raise Exception(f'token error unkone <{self.buffer+c}>')  
     def __exponential(self):
         c = self.reader.nextChar()
 
@@ -248,7 +248,7 @@ class Scanner():
             self.buffer += c
             self.currentState = ScannerState.IDENTITY_UNDERLINE
         else:
-            raise Exception(f'token error unkone <{self.buffer}>')
+            raise Exception(f'token error unkone <{self.buffer+c}>')
     def __identity_underline(self):
         c = self.reader.nextChar()
 
