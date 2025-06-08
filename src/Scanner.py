@@ -110,7 +110,7 @@ class Scanner():
             self.makeToken(Token.TokenType.LAYOUT)
             self.currentState = ScannerState.START
         else:
-            raise Exception(f'token error unkone <{self.buffer}>')
+            raise Exception(f'token error unkone <{self.buffer+c}>')
     def __float_dot(self):
         c = self.reader.nextChar()
 
