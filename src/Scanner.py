@@ -127,6 +127,7 @@ class Scanner():
             self.buffer += c
         elif c in DIGITAL:
             self.currentState = ScannerState.DECIMAL_POINT
+            self.buffer += c
         else:
             self.reader.retracted(1)
             self.makeToken(Token.TokenType.FLOAT)
