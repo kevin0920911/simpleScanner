@@ -47,6 +47,6 @@
 
 ## How to use
 ```bash
-python3 main.py <testFile>
+python3 src/main.py <testFile>
 ```
 - 接著結果會在`token.l` 之中

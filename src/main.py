@@ -29,6 +29,6 @@ if scanner.currentState in END_STATE:
 elif not scanner.currentState == Scanner.ScannerState.START:
     scanner.nextState()
     
-f = open('../token.l', mode = 'w')
+f = open('token.l', mode = 'w')
 for token in scanner.tokens:
     f.write(str(token)+'\n')
