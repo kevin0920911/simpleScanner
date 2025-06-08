@@ -189,6 +189,7 @@ class Scanner():
         if c in "=":
             self.buffer += c
             self.makeToken(Token.TokenType.BINARY)
+            self.currentState = ScannerState.START
         else:
             self.reader.retracted(1)
             self.makeToken(Token.TokenType.BINARY)
