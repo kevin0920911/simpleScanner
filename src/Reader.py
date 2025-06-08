@@ -17,6 +17,6 @@ class Reader:
         self.currPos -= n
     
     def eof(self) -> bool:
-        if self.currPos == self.length:
+        if self.currPos >= self.length:
             return True
         return False
