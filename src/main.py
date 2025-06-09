@@ -31,4 +31,4 @@ elif not scanner.currentState == Scanner.ScannerState.START:
     
 f = open('token.l', mode = 'w')
 for token in scanner.tokens:
-    f.write(str(token)+'\n')
+    f.writelines(str(token)+'\n')
