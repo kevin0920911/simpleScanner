@@ -1,3 +1,12 @@
-//fuck you wch ass
-int a = 10;
-return 0;
+int main(){
+    int a = 100;
+    int b = 200;
+
+    if (a>b){
+        float c = 1.25E+4;
+    }
+    else{
+        float d = 1.45;
+    }
+    return 0;
+}
