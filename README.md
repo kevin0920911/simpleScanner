@@ -1,14 +1,14 @@
 # Scanner Implement 
 
 ## Token Types
-- Separators and Brackets： `;` | `(` | `)` | `[` | `]` | `{` | `}`
+- Separators and Brackets：`;` | `(` | `)` | `[` | `]` | `{` | `}`
 - Binary Operators：`+` | `-` | `*` | `/` | `<=` | `>=` | `<>` | `<` | `>` | `=` | `==`
-- Comments: `/\*[\s\S]*\*/`
-- Layout: ` ` | `\t` | `\r` | `\n`
-- Keyword: `int` | `float` | `bool` | `void` | `while` | `if` | `else` | `for` | `return`
-- ID: `[a-zA-Z][a-zA-Z0-9]*(_[a-zA-Z0-9]+)*`
-- integer: `[0-9]+`
-- float: `[0-9]*.[0-9]+(E(+ |- |ε)[0-9]+|ε)`
+- Comments：`/\*[\s\S]*\*/`
+- Layout：` ` | `\t` | `\r` | `\n`
+- Keyword：`int` | `float` | `bool` | `void` | `while` | `if` | `else` | `for` | `return`
+- ID：`[a-zA-Z][a-zA-Z0-9]*(_[a-zA-Z0-9]+)*`
+- integer：`[0-9]+`
+- float：`[0-9]*.[0-9]+(E(+ |- |ε)[0-9]+|ε)`
 
 ## The file tree structure
 ```
