@@ -66,7 +66,7 @@ class Scanner():
             case ScannerState.COMMENT:
                 self.__commnet()
             case ScannerState.IDENTITY:
-                self.__identuty()
+                self.__identity()
             case ScannerState.identity_with_underline:
                 self.__identity_with_underline()
             case ScannerState.IDENTITY_UNDERLINE:
@@ -225,7 +225,7 @@ class Scanner():
         else:
             self.buffer += c
             self.currentState = ScannerState.inside_comment
-    def __identuty(self):
+    def __identity(self):
         c = self.reader.nextChar()
         if c in LETTER+DIGITAL:
             self.buffer += c
