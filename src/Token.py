@@ -16,4 +16,4 @@ class Token:
         self.text = text
 
     def __repr__(self):
-        return f'<{self.type}, {self.text.encode("unicode_escape").decode()}>'
+        return f'<{self.type.name}, \'{self.text.encode("unicode_escape").decode()}\'>'
