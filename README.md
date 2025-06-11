@@ -14,13 +14,12 @@
 ```
 .
 ├── README.md
-├── libary
+├── src
 │   ├── reader.py
 │   ├── main.py
 │   ├── scanner.py
 │   └── token.py
 ```
-
 
 
 
