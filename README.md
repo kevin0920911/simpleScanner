@@ -7,21 +7,21 @@
 - Layout：` ` | `\t` | `\r` | `\n`
 - Keyword：`int` | `float` | `bool` | `void` | `while` | `if` | `else` | `for` | `return`
 - ID：`[a-zA-Z][a-zA-Z0-9]*(_[a-zA-Z0-9]+)*`
-- integer：`[0-9]+`
-- float：`[0-9]*.[0-9]+(E(+ |- |ε)[0-9]+|ε)`
+- Integer：`[0-9]+`
+- Float：`[0-9]*.[0-9]+(E(+|-|ε)[0-9]+|ε)`
 
 ## The file tree structure
 ```
 .
 ├── README.md
 ├── src
-│   ├── reader.py
+│   ├── Reader.py
 │   ├── main.py
-│   ├── scanner.py
-│   └── token.py
+│   ├── Scanner.py
+│   └── Token.py
+├── tests
+│   └── test_Scanner.py
 ```
-
-
 
 ## Module Descriptions
 ### `reader.py`
@@ -41,11 +41,13 @@
     - `self.type`: Token 的類型
     - `self.text`: 該 Token 的字串
 
-
-
-
 ## How to use
 ```bash
 python3 src/main.py <testFile>
 ```
 - 接著結果會在`token.l` 之中
+
+## Testing
+```bash
+python3 -m unittest tests/test_Scanner.py
+```
