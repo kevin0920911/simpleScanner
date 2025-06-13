@@ -1,21 +1,11 @@
 import os
 import sys
 import unittest
-
 sys.path.append(os.path.join(os.path.dirname(__file__), '../src'))
 from Scanner import Scanner, ScannerState
 from Token import Token, TokenType
 
-
-class TestScanner(unittest.TestCase):
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.s = None
-    def tearDown(self):
-        del self.s
-        self.s = None
-    def text2tokens(self, text: str):
-        END_STATE = [
+END_STATE = [
             ScannerState.INTERGER,
             ScannerState.DECIMAL_POINT,
             ScannerState.EXPONENTIAL,
@@ -24,8 +14,18 @@ class TestScanner(unittest.TestCase):
             ScannerState.MORE_THAN_STATE,
             ScannerState.LESS_THAN_STATE,
             ScannerState.DIVISON_STATE,
+            ScannerState.DOUBLE_SLASH,
             ScannerState.COMMENT
         ]
+
+class TestScanner(unittest.TestCase):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.s = None
+    def tearDown(self):
+        del self.s
+        self.s = None
+    def text2tokens(self, text: str):    
         self.s = Scanner(text)
         while not self.s.reader.eof():
             self.s.nextState()
@@ -182,10 +182,19 @@ class TestScanner(unittest.TestCase):
         tokens = self.text2tokens('TREWQ_1234')
         self.assertEqual(tokens, [Token(TokenType.IDENTITY, 'TREWQ_1234')])
     def test_double_slash(self):
+        tokens = self.text2tokens("//this is a test ")
+        self.assertEqual(tokens, [
+            Token(TokenType.COMMENTS, '//this is a test ')
+        ])
+
         tokens = self.text2tokens('//this is a test \n')
-        self.assertEqual(tokens, [Token(TokenType.COMMENTS, '//this is a test ')])
+        self.assertEqual(tokens, [
+            Token(TokenType.COMMENTS, '//this is a test '),
+            Token(TokenType.LAYOUT, '\n')
+        ])
+
     def test_complex(self):
-        tokens = self.text2tokens(r'void test(){ int numbers[16] = {0}; }')
+        tokens = self.text2tokens('void test(){ int numbers[16] = {0}; }')
         self.assertEqual(tokens, [
             Token(TokenType.KEYWORD, 'void'),
             Token(TokenType.LAYOUT, ' '),
@@ -211,6 +220,16 @@ class TestScanner(unittest.TestCase):
             Token(TokenType.SEPARATORS, '}')
         ])
 
+        tokens = self.text2tokens('//Hi I wanna sleep\naaa=1')
+        self.assertEqual(
+            tokens,[
+                Token(TokenType.COMMENTS, '//Hi I wanna sleep'),
+                Token(TokenType.LAYOUT, '\n'),
+                Token(TokenType.IDENTITY, 'aaa'),
+                Token(TokenType.BINARY, '='),
+                Token(TokenType.INTEGER, '1')
+            ]
+        )
     # Test for error condition
     def test_start_error(self):
         try:
@@ -251,3 +270,6 @@ class TestScanner(unittest.TestCase):
         except Exception as e:
             self.assertEqual(self.s.currentState, ScannerState.identity_with_underline)
             self.assertIn("token error", str(e))
+
+if __name__ == "__main__":
+    unittest.main()

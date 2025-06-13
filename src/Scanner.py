@@ -73,6 +73,8 @@ class Scanner():
                 self.__identity_underline()
             case ScannerState.DOUBLE_SLASH:
                 self.__double_slash()
+            case _:
+                raise Exception("")
     def makeToken(self, type:Token.TokenType) -> None:
         newToken = Token.Token(type, self.buffer)
         self.buffer = ''
@@ -263,13 +265,18 @@ class Scanner():
             self.makeToken(Token.TokenType.IDENTITY)
             self.currentState = ScannerState.START
     def __double_slash(self):
+        if self.reader.eof():
+            self.makeToken(Token.TokenType.COMMENTS)
+            return
         c = self.reader.nextChar()
-
+    
         if c in '\n':
+            self.reader.retracted(1) 
             self.currentState = ScannerState.START
             self.makeToken(Token.TokenType.COMMENTS)
         else:
             self.currentState = ScannerState.DOUBLE_SLASH
             self.buffer += c
+        
 
 

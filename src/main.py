@@ -11,6 +11,7 @@ END_STATE = [
     Scanner.ScannerState.MORE_THAN_STATE,
     Scanner.ScannerState.LESS_THAN_STATE,
     Scanner.ScannerState.DIVISON_STATE,
+    Scanner.ScannerState.DOUBLE_SLASH,
     Scanner.ScannerState.COMMENT
 ]
 if len(sys.argv) == 2:
