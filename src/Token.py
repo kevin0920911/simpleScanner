@@ -21,4 +21,4 @@ class Token:
         return isinstance(other, Token) and self.type == other.type and self.text == other.text
 
     def __repr__(self):
-        return f"<{self.type.name}, '{self.text.encode("unicode_escape").decode()}'>"
+        return f"<{self.type.name}, '{self.text.encode('unicode_escape').decode()}'>"
